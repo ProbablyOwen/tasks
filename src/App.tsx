@@ -16,8 +16,6 @@ function App(): React.JSX.Element {
                 Edit <code>src/App.tsx</code> and save. This page will
                 automatically reload. My name is Owen Cook
             </p>
-            <p>Hello World</p>
-
             <p>Some scenery I saw</p>
             <img
                 src="src/Mountains.jpg"
