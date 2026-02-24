@@ -14,6 +14,7 @@ export function bookEndList(numbers: number[]): number[] {
     if (numbers.length > 1) {
         return [numbers[0], numbers[numbers.length - 1]];
     }
+    return [];
 }
 
 /**
