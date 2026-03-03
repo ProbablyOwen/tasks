@@ -157,7 +157,8 @@ export function mergeQuestion(
     contentQuestion: Question,
     { points }: { points: number },
 ): Question {
-    const newQ = {
+    //another test change
+    const newQ: Question = {
         ...contentQuestion,
         id,
         name,
