@@ -16,8 +16,8 @@ export function makeBlankQuestion(
         type,
         body: "",
         expected: "",
-        //testing if this is the issue of "any array type" issue w/ eslint
-        options: [] as string[],
+        //was not the issue
+        options: [],
         points: 1,
         published: false,
     };
@@ -81,7 +81,7 @@ export function toShortForm(question: Question): string {
  * Check the unit tests for more examples of what this looks like!
  */
 export function toMarkdown(question: Question): string {
-    //ask about why const test = string[] threw a no-unsafe-assignment error
+    //ask about why const test = string[] threw a no-unsafe-assignment error | got rid of 1/2 'any' errors on gradescope
     const test: string[] = [];
     test.push("# " + question.name);
     test.push(question.body);
@@ -117,7 +117,8 @@ export function publishQuestion(question: Question): Question {
  * The `published` field should be reset to false.
  */
 export function duplicateQuestion(id: number, oldQuestion: Question): Question {
-    const newQ = {
+    //another test change
+    const newQ: Question = {
         ...oldQuestion,
         id,
         name: "Copy of " + oldQuestion.name,
@@ -134,7 +135,8 @@ export function duplicateQuestion(id: number, oldQuestion: Question): Question {
  * Check out the subsection about "Nested Fields" for more information.
  */
 export function addOption(question: Question, newOption: string): Question {
-    const newOpt = {
+    //another test change
+    const newOpt: Question = {
         ...question,
         options: [...question.options, newOption],
     };
