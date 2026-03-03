@@ -16,7 +16,8 @@ export function makeBlankQuestion(
         type,
         body: "",
         expected: "",
-        options: [],
+        //testing if this is the issue of "any array type" issue w/ eslint
+        options: [] as string[],
         points: 1,
         published: false,
     };
