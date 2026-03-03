@@ -80,7 +80,8 @@ export function toShortForm(question: Question): string {
  * Check the unit tests for more examples of what this looks like!
  */
 export function toMarkdown(question: Question): string {
-    const test = [];
+    //ask about why const test = string[] threw a no-unsafe-assignment error
+    const test: string[] = [];
     test.push("# " + question.name);
     test.push(question.body);
     if (question.type === "multiple_choice_question") {
