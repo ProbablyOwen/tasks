@@ -8,9 +8,19 @@ import { Question, QuestionType } from "./interfaces/question";
 export function makeBlankQuestion(
     id: number,
     name: string,
-    type: QuestionType
+    type: QuestionType,
 ): Question {
-    return {};
+    return {
+        id,
+        name,
+        type,
+        body: "",
+        expected: "",
+        //was not the issue
+        options: [],
+        points: 1,
+        published: false,
+    };
 }
 
 /**
@@ -21,7 +31,9 @@ export function makeBlankQuestion(
  * HINT: Look up the `trim` and `toLowerCase` functions.
  */
 export function isCorrect(question: Question, answer: string): boolean {
-    return false;
+    const tmp = answer.trim().toLowerCase();
+    const tmp2 = question.expected.trim().toLowerCase();
+    return tmp === tmp2;
 }
 
 /**
@@ -31,7 +43,12 @@ export function isCorrect(question: Question, answer: string): boolean {
  * be exactly one of the options.
  */
 export function isValid(question: Question, answer: string): boolean {
-    return false;
+    if (question.type === "short_answer_question") {
+        return true;
+    } else {
+        const option = question.options.some((option) => option === answer);
+        return option;
+    }
 }
 
 /**
@@ -41,7 +58,9 @@ export function isValid(question: Question, answer: string): boolean {
  * name "My First Question" would become "9: My First Q".
  */
 export function toShortForm(question: Question): string {
-    return "";
+    const tmp10 = question.name.slice(0, 10);
+    const combinedstr = question.id + ": " + tmp10;
+    return combinedstr;
 }
 
 /**
@@ -62,7 +81,14 @@ export function toShortForm(question: Question): string {
  * Check the unit tests for more examples of what this looks like!
  */
 export function toMarkdown(question: Question): string {
-    return "";
+    //ask about why const test = string[] threw a no-unsafe-assignment error | got rid of 1/2 'any' errors on gradescope
+    const test: string[] = [];
+    test.push("# " + question.name);
+    test.push(question.body);
+    if (question.type === "multiple_choice_question") {
+        question.options.forEach((option) => test.push("- " + option));
+    }
+    return test.join("\n");
 }
 
 /**
@@ -70,7 +96,8 @@ export function toMarkdown(question: Question): string {
  * `newName`.
  */
 export function renameQuestion(question: Question, newName: string): Question {
-    return question;
+    const newQuestion = { ...question, name: newName };
+    return newQuestion;
 }
 
 /**
@@ -79,7 +106,8 @@ export function renameQuestion(question: Question, newName: string): Question {
  * published; if it was published, now it should be not published.
  */
 export function publishQuestion(question: Question): Question {
-    return question;
+    const flipquestion = { ...question, published: !question.published };
+    return flipquestion;
 }
 
 /**
@@ -89,7 +117,14 @@ export function publishQuestion(question: Question): Question {
  * The `published` field should be reset to false.
  */
 export function duplicateQuestion(id: number, oldQuestion: Question): Question {
-    return oldQuestion;
+    //another test change
+    const newQ: Question = {
+        ...oldQuestion,
+        id,
+        name: "Copy of " + oldQuestion.name,
+        published: false,
+    };
+    return newQ;
 }
 
 /**
@@ -100,7 +135,12 @@ export function duplicateQuestion(id: number, oldQuestion: Question): Question {
  * Check out the subsection about "Nested Fields" for more information.
  */
 export function addOption(question: Question, newOption: string): Question {
-    return question;
+    //another test change
+    const newOpt: Question = {
+        ...question,
+        options: [...question.options, newOption],
+    };
+    return newOpt;
 }
 
 /**
@@ -115,7 +155,15 @@ export function mergeQuestion(
     id: number,
     name: string,
     contentQuestion: Question,
-    { points }: { points: number }
+    { points }: { points: number },
 ): Question {
-    return contentQuestion;
+    //another test change
+    const newQ: Question = {
+        ...contentQuestion,
+        id,
+        name,
+        points,
+        published: false,
+    };
+    return newQ;
 }
