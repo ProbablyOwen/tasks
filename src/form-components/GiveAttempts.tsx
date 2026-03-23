@@ -1,4 +1,3 @@
-import { parse } from "path";
 import React, { useState } from "react";
 
 export function GiveAttempts(): React.JSX.Element {
